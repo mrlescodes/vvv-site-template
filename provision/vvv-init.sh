@@ -39,6 +39,13 @@ setup_nginx_folders() {
   noroot mkdir -p "${PUBLIC_DIR_PATH}"
 }
 
+install_acf_pro() {
+  ACF_PRO_KEY=$(get_config_value 'acf_pro_key' '')
+  if [ ! -z "${ACF_PRO_KEY}" ]; then
+    wp plugin install "http://connect.advancedcustomfields.com/index.php?p=pro&a=download&k=${ACF_PRO_KEY}" --activate
+  fi
+}
+
 install_plugins() {
   WP_PLUGINS=$(get_config_value 'install_plugins' '')
   if [ ! -z "${WP_PLUGINS}" ]; then
@@ -251,6 +258,7 @@ fi
 
 copy_nginx_configs
 setup_wp_config_constants
+install_acf_pro
 install_plugins
 install_themes
 

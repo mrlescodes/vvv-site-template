@@ -198,6 +198,12 @@ install_wp() {
     noroot wp plugin delete hello
   fi
 
+  DELETE_DEFAULT_THEMES=$(get_config_value 'delete_default_themes' '')
+  if [ ! -z "${DELETE_DEFAULT_THEMES}" ]; then
+    echo " * Deleting the default themes"
+    noroot wp theme delete --all --force
+  fi
+
   maybe_import_test_content
 }
 

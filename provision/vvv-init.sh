@@ -42,7 +42,7 @@ setup_nginx_folders() {
 install_acf_pro() {
   ACF_PRO_KEY=$(get_config_value 'acf_pro_key' '')
   if [ ! -z "${ACF_PRO_KEY}" ]; then
-    wp plugin install "http://connect.advancedcustomfields.com/index.php?p=pro&a=download&k=${ACF_PRO_KEY}" --activate
+    noroot wp plugin install "http://connect.advancedcustomfields.com/index.php?p=pro&a=download&k=${ACF_PRO_KEY}" --activate
   fi
 }
 

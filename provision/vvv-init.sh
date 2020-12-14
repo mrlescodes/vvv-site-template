@@ -60,6 +60,15 @@ install_plugins() {
   fi
 }
 
+install_site_repo() {
+  SITE_REPO=$(get_config_value 'site_repo' '')
+  if [ ! -z "${SITE_REPO}" ]; then
+    noroot git init
+    noroot git remote add origin "${SITE_REPO}"
+    noroot git pull origin master --allow-unrelated-histories
+  fi
+}
+
 install_themes() {
   WP_THEMES=$(get_config_value 'install_themes' '')
   if [ ! -z "${WP_THEMES}" ]; then
@@ -265,6 +274,7 @@ fi
 copy_nginx_configs
 setup_wp_config_constants
 install_acf_pro
+install_site_repo
 install_plugins
 install_themes
 

@@ -76,7 +76,7 @@ install_plugins() {
   WP_PLUGINS=$(get_config_value 'install_plugins' '')
   if [ ! -z "${WP_PLUGINS}" ]; then
     for plugin in ${WP_PLUGINS//- /$'\n'}; do
-      if [ ! $(noroot wp plugin is-installed "${plugin}") ]; then
+      if ! $(noroot wp plugin is-installed "${plugin}"); then
         echo " * Installing and activating plugin: '${plugin}'"
         noroot wp plugin install "${plugin}" --activate
       else
@@ -90,7 +90,7 @@ install_themes() {
   WP_THEMES=$(get_config_value 'install_themes' '')
   if [ ! -z "${WP_THEMES}" ]; then
       for theme in ${WP_THEMES//- /$'\n'}; do
-        if [ ! $(noroot wp theme is-installed "${theme}") ]; then
+        if ! $(noroot wp theme is-installed "${theme}"); then
           echo " * Installing theme: '${theme}'"
           noroot wp theme install "${theme}"
         else

@@ -40,8 +40,6 @@ setup_nginx_folders() {
 }
 
 install_starter_kit() {
-  echo " * install_starter_kit()"
-
   INSTALL_STARTER_KIT=$(get_config_value 'install_starter_kit' '')
   if [ ! -z "${INSTALL_STARTER_KIT}" ] && [ ! -d "${PUBLIC_DIR_PATH}/.git" ]; then
     cd "${PUBLIC_DIR_PATH}"
@@ -66,7 +64,7 @@ install_starter_kit() {
 install_acf_pro() {
   ACF_PRO_KEY=$(get_config_value 'acf_pro_key' '')
   if [ ! -z "${ACF_PRO_KEY}" ]; then
-    if [ ! $(noroot wp plugin is-installed advanced-custom-fields-pro) ]; then
+    if ! $(noroot wp plugin is-installed advanced-custom-fields-pro); then
       noroot wp plugin install "http://connect.advancedcustomfields.com/index.php?p=pro&a=download&k=${ACF_PRO_KEY}" --activate
     else
       echo " * ACF Pro is already installed."

@@ -41,7 +41,7 @@ setup_nginx_folders() {
 
 install_starter_kit() {
   INSTALL_STARTER_KIT=$(get_config_value 'install_starter_kit' '')
-  if [ ! -z "${INSTALL_STARTER_KIT}" && ! -d "${PUBLIC_DIR_PATH}/.git" ]; then
+  if [[ ! -z "${INSTALL_STARTER_KIT}" ]] && [[ ! -d "${PUBLIC_DIR_PATH}/.git" ]]; then
     cd "${PUBLIC_DIR_PATH}"
 
     echo " * Installing starter kit"

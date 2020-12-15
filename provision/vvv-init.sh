@@ -39,15 +39,20 @@ setup_nginx_folders() {
   noroot mkdir -p "${PUBLIC_DIR_PATH}"
 }
 
-install_site_repo() {
-  SITE_REPO=$(get_config_value 'site_repo' '')
-  if [ ! -z "${SITE_REPO}" ]; then
+install_starter_kit() {
+  INSTALL_STARTER_KIT=$(get_config_value 'install_starter_kit' '')
+  if [ ! -z "${INSTALL_STARTER_KIT}" ]; then
     cd "${PUBLIC_DIR_PATH}"
-    
+
+    # Clone repo
     noroot git init
-    noroot git remote add origin "${SITE_REPO}"
+    noroot git remote add origin "https://github.com/mrlescodes/wordpress-starter-kit.git"
     noroot git pull origin master --allow-unrelated-histories
-    
+
+    # Activate starter kit plugin and theme
+    noroot wp plugin activate wsk-theme-support
+    noroot wp theme activate wsk-theme
+
     cd "${VVV_PATH_TO_SITE}"
   fi
 }
@@ -277,7 +282,7 @@ fi
 
 copy_nginx_configs
 setup_wp_config_constants
-install_site_repo
+install_starter_kit
 install_acf_pro
 install_plugins
 install_themes

@@ -39,6 +39,19 @@ setup_nginx_folders() {
   noroot mkdir -p "${PUBLIC_DIR_PATH}"
 }
 
+install_site_repo() {
+  SITE_REPO=$(get_config_value 'site_repo' '')
+  if [ ! -z "${SITE_REPO}" ]; then
+    cd "${PUBLIC_DIR_PATH}"
+    
+    noroot git init
+    noroot git remote add origin "${SITE_REPO}"
+    noroot git pull origin master --allow-unrelated-histories
+    
+    cd "${VVV_PATH_TO_SITE}"
+  fi
+}
+
 install_acf_pro() {
   ACF_PRO_KEY=$(get_config_value 'acf_pro_key' '')
   if [ ! -z "${ACF_PRO_KEY}" ]; then
@@ -57,15 +70,6 @@ install_plugins() {
         echo " * The ${plugin} plugin is already installed."
       fi
     done
-  fi
-}
-
-install_site_repo() {
-  SITE_REPO=$(get_config_value 'site_repo' '')
-  if [ ! -z "${SITE_REPO}" ]; then
-    noroot git init
-    noroot git remote add origin "${SITE_REPO}"
-    noroot git pull origin master --allow-unrelated-histories
   fi
 }
 
@@ -273,8 +277,8 @@ fi
 
 copy_nginx_configs
 setup_wp_config_constants
-install_acf_pro
 install_site_repo
+install_acf_pro
 install_plugins
 install_themes
 

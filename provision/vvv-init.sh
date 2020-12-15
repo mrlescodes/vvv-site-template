@@ -41,13 +41,17 @@ setup_nginx_folders() {
 
 install_starter_kit() {
   INSTALL_STARTER_KIT=$(get_config_value 'install_starter_kit' '')
-  if [ ! -z "${INSTALL_STARTER_KIT}" ]; then
+  if [ ! -z "${INSTALL_STARTER_KIT}" && ! -d "${PUBLIC_DIR_PATH}/.git" ]; then
     cd "${PUBLIC_DIR_PATH}"
+
+    echo " * Installing starter kit"
 
     # Clone repo
     noroot git init
-    noroot git remote add origin https://github.com/mrlescodes/wordpress-starter-kit.git
+    noroot git remote add origin https://github.com/mrlescodes/WordPress-Starter-Kit.git
     noroot git pull origin master --allow-unrelated-histories
+
+    echo " * Activating starter kit plugin and theme"
 
     # Activate starter kit plugin and theme
     noroot wp plugin activate wsk-theme-support

@@ -48,8 +48,8 @@ install_starter_kit() {
 
     # Clone repo
     noroot git init
-    noroot git remote add origin https://github.com/mrlescodes/WordPress-Starter-Kit.git
-    noroot git pull origin master --allow-unrelated-histories
+    noroot git remote add origin https://github.com/mrlescodes/wordpress-starter-kit.git
+    noroot git pull origin main --allow-unrelated-histories
 
     echo " * Activating starter kit plugin and theme"
 

@@ -1,8 +1,6 @@
-# VVV Custom site template
+# VVV Site Template
 
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/6fc9d45abb02454aa052771bda2d40ff)](https://www.codacy.com/gh/Varying-Vagrant-Vagrants/custom-site-template?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Varying-Vagrant-Vagrants/custom-site-template&amp;utm_campaign=Badge_Grade)
-
-This tells VVV how to install WordPress and set up Nginx, great for doing development work or testing out plugins and themes.
+Modified version of the VVV [custom site template](https://github.com/mrlescodes/vvv-site-template). This template tells VVV how to install WordPress and set up Nginx, great for doing development work or testing out plugins and themes.
 
  - [Overview](#overview)
  - [Configuration Options](#configuration-options)
@@ -29,15 +27,18 @@ The Nginx configuration for this site can be overriden by creating a `provision/
 | `admin_email`            | `admin@local.test`         | The email address of the initial admin user                                                                                                                                                                                                                                        |
 | `admin_password`         | `password`                 | The password for the initial admin user                                                                                                                                                                                                                                            |
 | `admin_user`             | `admin`                    | The name of the initial admin user                                                                                                                                                                                                                                                 |
-| `db_name`                | The sites name             | The name of the MySQL database to create and install to                                                                                                                                                                                                                           |
-| `db_prefix`              | `wp_`                      | The WP table prefix                                                                                                                                                                                                                                                               |
+| `db_name`                | The sites name             | The name of the MySQL database to create and install to                                                                                                                                                                                                                            |
+| `db_prefix`              | `wp_`                      | The WP table prefix                                                                                                                                                                                                                                                                |
 | `delete_default_plugins` | `false`                    | Deletes the Hello Dolly and Akismet plugins on install                                                                                                                                                                                                                             |
+| `delete_default_themes`  | `false`                    | Deletes the default WordPress themes on install                                                                                                                                                                                                                                    |
 | `install_test_content`   | `false`                    | When first installing WordPress, run the importer and import standard test content from github.com/poststatus/wptest                                                                                                                                                               |
-| `public_dir`             | `public_html`              | Change the default folder inside the website's folder with the WP installation            |
+| `public_dir`             | `public_html`              | Change the default folder inside the website's folder with the WP installation                                                                                                                                                                                                     |
 | `live_url`               |                            | The production site URL, this tells Nginx to redirect requests for assets to the production server if they're not found. This prevents the need to store those assets locally.                                                                                                     |
 | `locale`                 | `en_US`                    | The locale for WP Admin language                                                                                                                                                                                                                                                   |
 | `install_plugins`        |                            | A list/array of plugins to install and activate. Similar to the hosts array. These values are passed to the WP CLI plugin install command and take the same format.                                                                                                                |
 | `install_themes`         |                            | A list/array of themes to install. Similar to the hosts array. These values are passed to the WP CLI plugin install command and take the same format.                                                                                                                              |
+| `install_starter_kit`    | `false`                    | Install the [WordPress Starter Kit](https://github.com/mrlescodes/wordpress-starter-kit)                                                                                                                                                                                           |
+| `acf_pro_key`            |                            | Add your Advanced Custom Fields license key to automatically install the plugin                                                                                                                                                                                                    |
 | `site_title`             | The first host of the site | The main name/title of the site, defaults to `sitename.test`                                                                                                                                                                                                                       |
 | `wp_type`                | `single`                   |  - `single` will create a standard WP install<br> - `subdomain` will create a subdomain multisite<br> - `subdirectory` will create a subdirectory multisite<br> - `none` will skip installing WordPress, and let you install WordPress manually (useful for custom folder layouts) |
 | `wp_version`             | `latest`                   | The version of WordPress to install if no installation is present                                                                                                                                                                                                                  |
@@ -51,7 +52,7 @@ A standard WordPress site:
 
 ```yaml
   my-site:
-    repo: https://github.com/Varying-Vagrant-Vagrants/custom-site-template
+    repo: https://github.com/mrlescodes/vvv-site-template
     hosts:
       - my-site.test
 ```
@@ -68,7 +69,7 @@ A standard WordPress site:
 
 ```yaml
   my-site:
-    repo: https://github.com/Varying-Vagrant-Vagrants/custom-site-template
+    repo: https://github.com/mrlescodes/vvv-site-template
     hosts:
       - foo.test
     custom:
@@ -89,7 +90,7 @@ Replace the VIP Go skeleton URL with your client repository then reprovision, th
 
 ```yaml
   vip:
-    repo: https://github.com/Varying-Vagrant-Vagrants/custom-site-template.git
+    repo: https://github.com/mrlescodes/vvv-site-template.git
     hosts:
       - vip.test
     folders:
@@ -119,7 +120,7 @@ Useful for when you already have a WordPress install you want to copy into place
 
 ```yaml
   my-site:
-    repo: https://github.com/Varying-Vagrant-Vagrants/custom-site-template
+    repo: https://github.com/mrlescodes/vvv-site-template
     hosts:
       - foo.test
     custom:
@@ -139,7 +140,7 @@ A `provision/vvv-nginx-custom.conf` will be need for custom routing to work if i
 
 ```yaml
   drupal-site:
-    repo: https://github.com/Varying-Vagrant-Vagrants/custom-site-template
+    repo: https://github.com/mrlescodes/vvv-site-template
     hosts:
       - drupal.test
     custom:
@@ -156,7 +157,7 @@ A `provision/vvv-nginx-custom.conf` will be need for custom routing to work if i
 
 ```yaml
   my-site:
-    repo: https://github.com/Varying-Vagrant-Vagrants/custom-site-template
+    repo: https://github.com/mrlescodes/vvv-site-template
     hosts:
       - multisite.test
       - site1.multisite.test
@@ -176,7 +177,7 @@ A `provision/vvv-nginx-custom.conf` will be need for custom routing to work if i
 
 ```yaml
   my-site:
-    repo: https://github.com/Varying-Vagrant-Vagrants/custom-site-template
+    repo: https://github.com/mrlescodes/vvv-site-template
     hosts:
       - multisite.test
     custom:

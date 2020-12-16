@@ -45,15 +45,11 @@ install_starter_kit() {
     cd "${PUBLIC_DIR_PATH}"
 
     echo " * Installing starter kit"
-
-    # Clone repo
     noroot git init
     noroot git remote add origin https://github.com/mrlescodes/wordpress-starter-kit.git
     noroot git pull origin main --allow-unrelated-histories --rebase=false
 
     echo " * Activating starter kit plugin and theme"
-
-    # Activate starter kit plugin and theme
     noroot wp plugin activate wsk-theme-support
     noroot wp theme activate wsk-theme
 

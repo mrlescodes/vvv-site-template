@@ -1,6 +1,6 @@
 # VVV Site Template
 
-Modified version of the VVV [custom site template](https://github.com/mrlescodes/vvv-site-template). This template tells VVV how to install WordPress and set up Nginx, great for doing development work or testing out plugins and themes.
+Modified version of the VVV [custom site template](https://github.com/Varying-Vagrant-Vagrants/custom-site-template). This template tells VVV how to install WordPress and set up Nginx, great for doing development work or testing out plugins and themes.
 
  - [Overview](#overview)
  - [Configuration Options](#configuration-options)
@@ -53,6 +53,7 @@ A standard WordPress site:
 ```yaml
   my-site:
     repo: https://github.com/mrlescodes/vvv-site-template
+    branch: main
     hosts:
       - my-site.test
 ```
@@ -70,6 +71,7 @@ A standard WordPress site:
 ```yaml
   my-site:
     repo: https://github.com/mrlescodes/vvv-site-template
+    branch: main
     hosts:
       - foo.test
     custom:
@@ -90,19 +92,20 @@ Replace the VIP Go skeleton URL with your client repository then reprovision, th
 
 ```yaml
   vip:
-    repo: https://github.com/mrlescodes/vvv-site-template.git
+    repo: https://github.com/mrlescodes/vvv-site-template
+    branch: main
     hosts:
       - vip.test
     folders:
       # VIP Site repo
       public_html/wp-content/:
         git:
-          repo: https://github.com/Automattic/vip-go-skeleton.git
+          repo: https://github.com/Automattic/vip-go-skeleton
           overwrite_on_clone: true
       # VIP Go MU Plugins
       public_html/wp-content/mu-plugins:
         git:
-          repo: https://github.com/Automattic/vip-go-mu-plugins.git
+          repo: https://github.com/Automattic/vip-go-mu-plugins
           overwrite_on_clone: true
           hard_reset: true
           pull: true
@@ -121,6 +124,7 @@ Useful for when you already have a WordPress install you want to copy into place
 ```yaml
   my-site:
     repo: https://github.com/mrlescodes/vvv-site-template
+    branch: main
     hosts:
       - foo.test
     custom:
@@ -141,6 +145,7 @@ A `provision/vvv-nginx-custom.conf` will be need for custom routing to work if i
 ```yaml
   drupal-site:
     repo: https://github.com/mrlescodes/vvv-site-template
+    branch: main
     hosts:
       - drupal.test
     custom:
@@ -158,6 +163,7 @@ A `provision/vvv-nginx-custom.conf` will be need for custom routing to work if i
 ```yaml
   my-site:
     repo: https://github.com/mrlescodes/vvv-site-template
+    branch: main
     hosts:
       - multisite.test
       - site1.multisite.test
@@ -178,6 +184,7 @@ A `provision/vvv-nginx-custom.conf` will be need for custom routing to work if i
 ```yaml
   my-site:
     repo: https://github.com/mrlescodes/vvv-site-template
+    branch: main
     hosts:
       - multisite.test
     custom:

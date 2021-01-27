@@ -45,7 +45,7 @@ install_starter_kit() {
     cd "${PUBLIC_DIR_PATH}"
 
     echo " * Installing starter kit"
-    noroot git init
+    noroot git init -b main
     noroot git remote add origin https://github.com/mrlescodes/wordpress-starter-kit.git
     noroot git pull origin main --allow-unrelated-histories --rebase=false
 
